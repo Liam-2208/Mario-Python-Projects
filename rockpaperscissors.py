@@ -1,13 +1,13 @@
 import random
 
 def printRules():
-    print("""The computer will think of rock, paper or scissors.
+    print("""\nThe computer will think of rock, paper or scissors.
 Enter r for rock, s for scissors and p for paper.
 The computer will reveal its choice and the winner.""")
 
 def playGame():
     choices = ["Rock","Paper","Scissors"]
-    playerChoice = input("Enter r for rock, s for scissors and p for paper: ")
+    playerChoice = input("\nEnter r for rock, s for scissors and p for paper: ")
     computerChoice = choices[random.randint(0,2)]
     print(f'The computer chose {computerChoice}')
     computerChoice = computerChoice[1].lower()
