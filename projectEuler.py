@@ -50,10 +50,6 @@ def evenFibbonacci():
 def largestPrimeFactor():
     num = 600851475143
     
-        
-
-
-
 def main():
     choice = int(input())
     if choice == 1:
