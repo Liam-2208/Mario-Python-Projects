@@ -29,6 +29,7 @@ while lives!=0:
             solution = fillBlanks(array_word, word, guess, solution)
             print(f"Word: {solution}")
             pass
+
     if len(guess) == len(word) and guess != word:
         lives-=1
         print(f'Your guess was incorrect, you have {lives} lives remaining.')
@@ -39,6 +40,7 @@ while lives!=0:
     elif guess == word:
         print('Your guess was correct! You win!')
         break
+
     if guess not in word:
         lives -=1
         print(f'{guess} was not in the word! You have {lives} lives remaing. ')
