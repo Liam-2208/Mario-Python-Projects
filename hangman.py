@@ -53,7 +53,7 @@ def main():
             lives -=1
             print(f'{guess} was not in the word! You have {lives} lives remaing. ')
             guessedLetters.append(guess)
-            print('Letters guessed: {guessedLetters}')
+            print(f'Letters guessed: {guessedLetters}')
             solution = fillBlanks(array_word, guess, solution)
             print(f'Word: {solution}')
         else:
