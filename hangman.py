@@ -2,29 +2,31 @@ from random_word import RandomWords
 r = RandomWords()
 
 def fillBlanks(array_word, guess, solution):
-    i=0
+    array_index=0
     for letter in array_word:
         if letter == guess:
-            solution[i] = letter
-            i+=1
+            solution[array_index] = letter
+            array_index+=1
         else:
-            i+=1
+            array_index+=1
     return solution
 
 def main():
     word = r.get_random_word()
-    array_word = [c for c in word]
+    array_word = [char for char in word]
     lives = 7
     guessedLetters = []
-    solution = ["" for i in range(0, len(word))]
+    solution = ["" for char in word]
 
     print(f'The word has {len(word)} letters. \n{solution}')
     while lives!=0:
         if solution == array_word:
             print('You found all the letters! You win (I think?)')
+            break
+
         guess = input('\nGuess a letter or word: ')
-        for c in guessedLetters:
-            if c == guess:
+        for char in guessedLetters:
+            if char == guess:
                 print(f'{guess} has already been guessed!')
                 print(f'Letters guessed: {guessedLetters}')
                 solution = fillBlanks(array_word, guess, solution)
