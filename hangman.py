@@ -16,9 +16,10 @@ def main():
     array_word = [c for c in word]
     lives = 7
     guessedLetters = []
-    solution = []
-    for i in range(0, len(word)):
-        solution.append("")
+    solution = ["" for i in range(0, len(word))]
+    #for i in range(0, len(word)):
+        #solution.append("")
+    print(solution)
 
     print(f'The word has {len(word)} letters. \n{solution}')
     while lives!=0:
@@ -43,7 +44,6 @@ def main():
         elif guess == word:
             print('Your guess was correct! You win!')
             break
-            
 
         if guess not in word:
             lives -=1
