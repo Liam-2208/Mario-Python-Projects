@@ -25,6 +25,11 @@ def main():
             break
 
         guess = input('\nGuess a letter or word: ')
+
+        if guess == "":
+            print('Please enter a guess.\n')
+            pass
+
         for char in guessedLetters:
             if char == guess:
                 print(f'{guess} has already been guessed!')
