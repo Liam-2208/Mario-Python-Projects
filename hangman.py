@@ -17,9 +17,6 @@ def main():
     lives = 7
     guessedLetters = []
     solution = ["" for i in range(0, len(word))]
-    #for i in range(0, len(word)):
-        #solution.append("")
-    print(solution)
 
     print(f'The word has {len(word)} letters. \n{solution}')
     while lives!=0:
