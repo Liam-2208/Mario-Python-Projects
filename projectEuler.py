@@ -46,9 +46,6 @@ def evenFibbonacci():
         prev_term=curr_term
         curr_term = next_term
     print(total)
-
-def largestPrimeFactor():
-    num = 600851475143
     
 def main():
     choice = int(input())
