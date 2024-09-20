@@ -1,5 +1,3 @@
-import math
-
 def payment(credit, valid_coins, items, choice):
     while credit < items[choice][1]:
         print(f"Item selected: {items[choice][0]}")
