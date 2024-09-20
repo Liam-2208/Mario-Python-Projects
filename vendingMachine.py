@@ -1,6 +1,6 @@
 def main():
     credit = 0
-    valid_coins = [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2]
+    valid_coins = [0.01, 0.02, 0.05, 0.10, 0.20, 0.50, 1, 2]
     items = {
         "A1": ["Original", 1.55],
         "A2": ["Ultra White", 1.45],
