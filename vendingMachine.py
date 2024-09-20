@@ -1,7 +1,8 @@
 import math
 
 def payment(credit, valid_coins, items, choice):
-    while credit <= items[choice][1]:
+    while credit < items[choice][1]:
+        print(f"Item selected: {items[choice][0]}")
         coin = float(input(f"Amount due: {round((items[choice][1] - credit), 2)}\nCoins Accepted: {valid_coins}\nInsert Coins: "))
         if coin not in valid_coins:
             print("Coin not accepted.")
@@ -33,8 +34,8 @@ def main():
     print("Items:")
     for key in items:
         print(f"{key}: {items[key]}")
-
     choice = input("Please pick an item: ")
+    choice = choice.capitalize()
     payment(credit, valid_coins, items, choice)
     main()
 
