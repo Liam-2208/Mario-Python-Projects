@@ -1,12 +1,12 @@
 import time
 
-def dispense(change, item, credit):
-    if change > 0:
-        print(f"You have {change} in change")
+def dispense(item, credit):
+    if credit > 0:
+        print(f"You have {credit} in change")
         print(f"{item} has been dispensed.")
         time.sleep(1)
     else:
-        print(f"You have no chnage.")
+        print(f"You have no change.")
         print(f"{item} has been dispensed.")
         time.sleep(1)
 
@@ -16,7 +16,7 @@ def payment(credit, items, selected_item):
     item = items[selected_item][0]
     while credit < amount_due:
         try:
-            print(f"\nItem selected: {selected_item}")
+            print(f"\nItem selected: {item}")
             amount_due = items[selected_item][1] - credit
             coin = float(input(f"Amount due: {round(amount_due, 2)}\nCoins Accepted: {valid_coins}\nInsert Coins: "))
             if coin not in valid_coins:
@@ -28,10 +28,10 @@ def payment(credit, items, selected_item):
             print("Enter coin as a float.\n")
             time.sleep(1)
 
-    change = credit - items[selected_item][1]
-    return change, credit
+    credit = credit - items[selected_item][1]
+    return credit
 
-def select_item(credit, items):
+def select_item(items):
     print("Items:")
     for key in items:
         print(f"{key}: {items[key]}")
@@ -59,9 +59,9 @@ def main():
         "D2": ["Khaotic", 1.50]
     }
 
-    selected_item = select_item(credit, items)
-    change, credit = payment(credit, items, selected_item)
+    selected_item = select_item(items)
+    credit = payment(credit, items, selected_item)
     item = items[selected_item][0]
-    dispense(change, item, credit)
+    dispense(item, credit)
 
 main()
