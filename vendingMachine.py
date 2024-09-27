@@ -4,12 +4,8 @@ import os
 def dispense(item, credit):
     if credit > 0:
         print(f"You have {round(credit, 2)} in change")
-        print(f"{item} has been dispensed.")
-        time.sleep(1)
-    else:
-        print(f"You have no change.")
-        print(f"{item} has been dispensed.")
-        time.sleep(1)
+    print(f"{item} has been dispensed.")
+    time.sleep(1)
 
 def payment(items, selected_item):
     credit = 0
@@ -53,7 +49,7 @@ def select_item(items):
 def main():
     choice = ""
     items = {
-        "A1": ["Original", 1.55],
+        "A1": ["Original", 1.55, ],
         "A2": ["Ultra White", 1.45],
         "B1": ["Ultra Rosa", 1.50],
         "B2": ["Bad Apple", 1.60],
@@ -68,5 +64,5 @@ def main():
     os.system("cls")
     dispense(selected_item, credit)
 
-main()
-
+if __name__ == __main__:
+    main()
