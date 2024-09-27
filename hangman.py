@@ -67,12 +67,3 @@ def main():
         print(f'You lose!\nThe word was {word}')
 
 main()
-                    
-                
-
-
-
-
-
-
-
