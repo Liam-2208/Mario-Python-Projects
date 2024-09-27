@@ -62,10 +62,11 @@ def main():
         "D1": ["Ultra Paradise", 1.45],
         "D2": ["Khaotic", 1.55]
     }
-    item = select_item(items)
+    selected_item = select_item(items)
     os.system("cls")
-    credit = payment(items, item)
+    credit = payment(items, selected_item)
     os.system("cls")
-    dispense(item, credit)
+    dispense(selected_item, credit)
 
 main()
+
