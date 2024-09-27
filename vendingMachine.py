@@ -1,4 +1,5 @@
 import time
+import os
 
 def dispense(item, credit):
     if credit > 0:
@@ -16,6 +17,7 @@ def payment(items, selected_item):
     amount_due = items[selected_item][1]
     item = items[selected_item][0]
     while credit < amount_due:
+        os.system("cls")
         try:
             print(f"\nItem selected: {item}")
             amount_due = items[selected_item][1] - credit
@@ -41,6 +43,7 @@ def select_item(items):
     while selected_item not in items:
         print("Please choose a valid choice.\n")
         time.sleep(1)
+        os.system("cls")
         for key in items:
             print(f"{key}: {items[key]}")
         selected_item = input("\nPlease pick an item: ")
@@ -60,7 +63,9 @@ def main():
         "D2": ["Khaotic", 1.55]
     }
     item = select_item(items)
+    os.system("cls")
     credit = payment(items, item)
+    os.system("cls")
     dispense(item, credit)
 
 main()
