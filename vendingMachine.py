@@ -6,5 +6,5 @@ def main():
         "B2": ["Bad Apple", 1.60],
         "C1": ["Orange Dreamsicle", 1.60],
         "C2": ["Ultra Strawbery Dreams", 1.65],
-        "D1": ["Ultra Paradise", 1.45]
+        "D1": ["Ultra Paradise", 1.45],
     }
