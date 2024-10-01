@@ -26,21 +26,22 @@ def check_horizontal(grid):
                 return 1
             elif temp == "RRRR":
                 return 2
-            i+=1
-      
+            i+=1 
     return False
 
-
 def check_vertical(grid):
-    columns = len(grid[0]) - 1
-    i = 0
-    while i <= columns:
-        searchString+=grid[i][0]
-        i+=1
-        
-
-        
-
+    column = ""
+    for column_top in range(0, len(grid[0])):
+        for space in grid[0][0:len(grid)]:
+            column+=space
+        for i in range(0, len(column)-1):
+            temp = "".join(column[i:i+4])
+            print(temp)
+            if temp == "BBBB":
+                return 1
+            elif temp == "RRRR":
+                return 2
+    return False
 #def check_diagonal(grid):
     #
 
@@ -76,7 +77,7 @@ def main():
             else:
                 row-=1
 
-        print(check_horizontal(board))
+        print(check_vertical(board))
 
 
         #os.system("cls")
