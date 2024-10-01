@@ -64,5 +64,5 @@ def main():
     os.system("cls")
     dispense(selected_item, credit)
 
-if __name__ == __main__:
+if __name__ == "__main__":
     main()
