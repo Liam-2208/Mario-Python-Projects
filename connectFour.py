@@ -24,9 +24,9 @@ def check_horizontal(grid):
             temp = "".join(row[i:i+4])
 
             if temp == "BBBB":
-                return True, 1
+                return True
             elif temp == "RRRR":
-                return True, 2
+                return True
             i+=1 
     return False
 
@@ -40,9 +40,9 @@ def check_vertical(grid):
             temp = column[i:i+4]
             print(temp)
             if temp == "BBBB":
-                return True, 1
+                return True
             elif temp == "RRRR":
-                return True, 2
+                return True
     return False
 
 #def check_diagonal(grid):
@@ -58,8 +58,14 @@ def main():
         draw(board)
 
         print(f"It is player {player}'s go.")
-        c_choice = int(input("Enter the column number: "))
-        r_choice = int(input("Enter the row number: "))
+
+        while c_choice not in range(len(board[0])-1):
+            c_choice = int(input("Enter the column number: "))
+            print(f"{c_choice} is not a valid column.")
+
+        while r_choice not in range(0, len(board) - 1):
+            r_choice = int(input("Enter the row number: "))
+            print(f"{r_choice} is not a valid column.")
     
         validMove = False
         row = len(board) - 1
@@ -83,7 +89,7 @@ def main():
         vertical = check_vertical(board)
         #diagonal = check_diagonal(board)
 
-        #won = horizontal[0] or vertical[0] or diagonal[0]
+        #won = horizontal or vertical or diagonal
         if won == True:
             winner = player
 
