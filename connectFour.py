@@ -7,7 +7,7 @@ def draw(grid):
     print("0 1 2 3 4 5 6")
     print("| | | | | | |")
     for row in grid:
-        print(f"{" ".join(row)} -- {i}")
+        print(f"{' '.join(row)} -- {i}")
         i+=1
 
 def add_piece(grid, column, row, player):
@@ -20,28 +20,31 @@ def add_piece(grid, column, row, player):
 
 def check_horizontal(grid):
     for row in grid:
-        for i in range(len(row)-1):
+        for i in range(len(row)-3):
             temp = "".join(row[i:i+4])
+
             if temp == "BBBB":
-                return 1
+                return True, 1
             elif temp == "RRRR":
-                return 2
+                return True, 2
             i+=1 
     return False
 
 def check_vertical(grid):
     column = ""
     for column_top in range(0, len(grid[0])):
-        for space in grid[0][0:len(grid)]:
-            column+=space
-        for i in range(0, len(column)-1):
-            temp = "".join(column[i:i+4])
+        for row in range(0, len(grid)):
+            column+=grid[row][column_top]
+
+        for i in range(0, len(column)-3):
+            temp = column[i:i+4]
             print(temp)
             if temp == "BBBB":
-                return 1
+                return True, 1
             elif temp == "RRRR":
-                return 2
+                return True, 2
     return False
+
 #def check_diagonal(grid):
     #
 
@@ -57,20 +60,17 @@ def main():
         print(f"It is player {player}'s go.")
         c_choice = int(input("Enter the column number: "))
         r_choice = int(input("Enter the row number: "))
-        choice = board[c_choice][r_choice]
     
         validMove = False
         row = len(board) - 1
         while not validMove:
             if board[row][c_choice] == "0":
                 if r_choice > row or r_choice < row:
-                    print("Invalid move. Your turn has been forfieted.")
+                    print("Invalid move. You cannot place your token where there is none below it.")
                     time.sleep(1)
-                    break
                 elif board[r_choice][c_choice] != "0":
-                    print("Invalid move. Your turn has been forfieted.")
+                    print("Invalid move. You cannot place your token in the same place as another players.")
                     time.sleep(1)
-                    break
                 else:
                     board = add_piece(board, c_choice, r_choice, player)
                     validMove = True
@@ -79,6 +79,13 @@ def main():
 
         print(check_vertical(board))
 
+        horizontal = check_horizontal(board)
+        vertical = check_vertical(board)
+        #diagonal = check_diagonal(board)
+
+        #won = horizontal[0] or vertical[0] or diagonal[0]
+        if won == True:
+            winner = player
 
         #os.system("cls")
         if player == 1:
@@ -86,6 +93,8 @@ def main():
         else:
             player = 1
         turns+=1
+
+    print(f"{winner} has won the game.")
 
 main()
 
