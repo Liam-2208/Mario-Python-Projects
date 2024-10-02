@@ -15,7 +15,7 @@ def add_piece(grid, column, row, player):
         piece = "B"
     else:
         piece = "R"
-    grid[row][column] = piece
+    grid[str(row)][str(column)] = piece
     return grid
 
 def check_horizontal(grid):
@@ -59,14 +59,31 @@ def main():
 
         print(f"It is player {player}'s go.")
 
-        while c_choice not in range(len(board[0])-1):
-            c_choice = int(input("Enter the column number: "))
-            print(f"{c_choice} is not a valid column.")
+        
+        while True:
+            try: 
+                r_choice = int(input("Enter the row number: "))
+                if r_choice not in range(0, len(board)):
+                    print(f"{r_choice} is not a valid column.")
+                    time.sleep(1)
+                else:
+                    break
+            except ValueError:
+                print(f"Row must be an integer.")
+                time.sleep(1)
 
-        while r_choice not in range(0, len(board) - 1):
-            r_choice = int(input("Enter the row number: "))
-            print(f"{r_choice} is not a valid column.")
-    
+        while True:
+                try: 
+                    c_choice = int(input("Enter the column number: "))
+                    if c_choice not in range(0, len(board[0])):
+                        print(f"{c_choice} is not a valid column.")
+                        time.sleep(1)
+                    else:
+                        break
+                except ValueError:
+                    print(f"Row must be an integer.")
+                    time.sleep(1)
+        
         validMove = False
         row = len(board) - 1
         while not validMove:
