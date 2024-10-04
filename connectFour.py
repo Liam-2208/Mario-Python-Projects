@@ -7,16 +7,17 @@ def draw(grid):
     print("0 1 2 3 4 5 6")
     print("| | | | | | |")
     for row in grid:
-        print(f"{' '.join(row)} -- {i}")
-        i+=1
+        print(f"{' '.join(row)}")
 
-def add_piece(grid, column, row, player):
+def update_grid(grid, column, row, player):
+    time.sleep(1)
     if player == 1:
         piece = "B"
     else:
         piece = "R"
-    grid[str(row)][str(column)] = piece
+    grid[row][column] = piece
     return grid
+
 
 def check_horizontal(grid):
     for row in grid:
@@ -45,8 +46,37 @@ def check_vertical(grid):
                 return True
     return False
 
-#def check_diagonal(grid):
-    #
+def check_diagonal(grid, player):
+    top_left_to_bottom_right = {}
+    bottom_left_to_top_right = {}
+
+    if player == 1:
+        counter = "B"
+    else:
+        counter = "R"
+
+    for row in range(0, len(grid)):
+        for space in range(0, len(grid[0])):
+            if space == "0":
+                continue
+            elif space != counter:
+                continue
+            else:
+                key1 = space - row
+                top_left_to_bottom_right[key1] += 1
+                
+                key2 = space + row
+                bottom_left_to_top_right[key2] +=1
+
+                if key1 in top_left_to_bottom_right == 4:
+                    return True
+                elif key2 in bottom_left_to_top_right == 4:
+                    return True
+                else:
+                    return False
+
+def check_wins(grid, player):
+    return check_diagonal(grid, player) or check_vertical(grid) or check_horizontal(grid)
 
 def main():
     board = [["0","0","0","0","0","0","0"] for i in range(0,6)]
@@ -56,66 +86,43 @@ def main():
 
     while not won == True:
         draw(board)
+        c_choice = None
+        r_choice = None
 
         print(f"It is player {player}'s go.")
 
-        
         while True:
-            try: 
-                r_choice = int(input("Enter the row number: "))
-                if r_choice not in range(0, len(board)):
-                    print(f"{r_choice} is not a valid column.")
-                    time.sleep(1)
+            try:
+                c_choice = int(input("Pick a column: "))
+                if c_choice not in range(0, len(board[0])-1):
+                    c_choice = int(input("Pick a column: "))
+                    print("Column outside range.")
                 else:
                     break
             except ValueError:
-                print(f"Row must be an integer.")
-                time.sleep(1)
-
-        while True:
-                try: 
-                    c_choice = int(input("Enter the column number: "))
-                    if c_choice not in range(0, len(board[0])):
-                        print(f"{c_choice} is not a valid column.")
-                        time.sleep(1)
-                    else:
-                        break
-                except ValueError:
-                    print(f"Row must be an integer.")
-                    time.sleep(1)
+                print("Column should be a valid number between 0 and 6.")
         
-        validMove = False
-        row = len(board) - 1
-        while not validMove:
-            if board[row][c_choice] == "0":
-                if r_choice > row or r_choice < row:
-                    print("Invalid move. You cannot place your token where there is none below it.")
-                    time.sleep(1)
-                elif board[r_choice][c_choice] != "0":
-                    print("Invalid move. You cannot place your token in the same place as another players.")
-                    time.sleep(1)
-                else:
-                    board = add_piece(board, c_choice, r_choice, player)
-                    validMove = True
-            else:
-                row-=1
+        for row in range(0, len(board)-1):
+            if board[row][c_choice] != 0:
+                r_choice == row+1
+                break
+            elif row == len(grid[0])-1:
+                r_choice == len(grid[0])-1
+                break
 
-        print(check_vertical(board))
+        board = update_grid(board, c_choice, r_choice, player)
 
-        horizontal = check_horizontal(board)
-        vertical = check_vertical(board)
-        #diagonal = check_diagonal(board)
-
-        #won = horizontal or vertical or diagonal
+        won = check_wins(board, player)
         if won == True:
             winner = player
 
-        #os.system("cls")
+        os.system("cls")
         if player == 1:
             player = 2
         else:
             player = 1
         turns+=1
+        
 
     print(f"{winner} has won the game.")
 
