@@ -88,8 +88,7 @@ def main():
     player = 1
     turns = 1
     c_choice = 0
-    r_choice = 0
-    lowest_points = {}
+    lowest_point = 0
 
     while not won == True:
         draw(board)
@@ -102,7 +101,7 @@ def main():
         c_choice = int(input("Pick a column: "))
         while True:
             try:
-                if c_choice not in range(0, len(board[0])-1):
+                if c_choice not in range(0, len(board[0])):
                     print("Column outside range.")
                     c_choice = int(input("Pick a column: "))
                 else:
@@ -110,23 +109,17 @@ def main():
             except ValueError:
                 print("Column should be a valid number between 0 and 6.")
         
-        for row in range(0, len(board)):
-            for column in range(0, len(board[0])):
-                if board[row][column] == "0":
-                    lowest_points[column] = row
-                elif board[row][column] == "R" or board[row][column] == "B":
-                    lowest_points[row] -= row
-                    
-        print(lowest_points)
-        print(lowest_points[c_choice])
-        time.sleep(1)
-        r_choice = lowest_points[c_choice]
+        for row in board:
+            if row[c_choice] != "0":
+                lowest_point = board.index(row)
+                lowest_point-=1
+                break       
+            else:
+                lowest_point = len(board)-1
 
-
-        
-        board = update_grid(board, c_choice, r_choice, player)
-
+        board = update_grid(board, c_choice, lowest_point, player)
         won = check_wins(board, player, turns, board)
+
         if won == True:
             winner = player
 
@@ -137,8 +130,8 @@ def main():
             player = 1
         turns+=1
         
-    print(f"{winner} has won the game.")
+    print(f"Player {winner} has won the game.")
 
-main()
-
+if __name__ == "__main__":
+    main()
 
