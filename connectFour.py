@@ -75,44 +75,58 @@ def check_diagonal(grid, player):
                 else:
                     return False
 
-def check_wins(grid, player):
-    return check_diagonal(grid, player) or check_vertical(grid) or check_horizontal(grid)
+def check_wins(grid, player, turns, board):
+    won = check_diagonal(grid, player) or check_vertical(grid) or check_horizontal(grid)
+    if won:
+        return won
+    elif turns == len(board)*len(board[0]):
+        return "All spaces filled. Its a draw!!"
 
 def main():
     board = [["0","0","0","0","0","0","0"] for i in range(0,6)]
     won = False
     player = 1
     turns = 1
+    c_choice = 0
+    r_choice = 0
+    lowest_points = {}
 
     while not won == True:
         draw(board)
-        c_choice = None
-        r_choice = None
+       
+        if turns == len(board)*len(board[0]):
+            print("All spaces filled!\nIt's a draw!.")
 
         print(f"It is player {player}'s go.")
 
+        c_choice = int(input("Pick a column: "))
         while True:
             try:
-                c_choice = int(input("Pick a column: "))
                 if c_choice not in range(0, len(board[0])-1):
-                    c_choice = int(input("Pick a column: "))
                     print("Column outside range.")
+                    c_choice = int(input("Pick a column: "))
                 else:
                     break
             except ValueError:
                 print("Column should be a valid number between 0 and 6.")
         
-        for row in range(0, len(board)-1):
-            if board[row][c_choice] != 0:
-                r_choice == row+1
-                break
-            elif row == len(grid[0])-1:
-                r_choice == len(grid[0])-1
-                break
+        for row in range(0, len(board)):
+            for column in range(0, len(board[0])):
+                if board[row][column] == "0":
+                    lowest_points[column] = row
+                elif board[row][column] == "R" or board[row][column] == "B":
+                    lowest_points[row] -= row
+                    
+        print(lowest_points)
+        print(lowest_points[c_choice])
+        time.sleep(1)
+        r_choice = lowest_points[c_choice]
 
+
+        
         board = update_grid(board, c_choice, r_choice, player)
 
-        won = check_wins(board, player)
+        won = check_wins(board, player, turns, board)
         if won == True:
             winner = player
 
@@ -123,7 +137,6 @@ def main():
             player = 1
         turns+=1
         
-
     print(f"{winner} has won the game.")
 
 main()
