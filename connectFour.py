@@ -50,30 +50,31 @@ def check_diagonal(grid, player):
     top_left_to_bottom_right = {}
     bottom_left_to_top_right = {}
 
-    if player == 1:
-        counter = "B"
-    else:
-        counter = "R"
+    counter = "B" if player == 1 else "R"
 
-    for row in range(0, len(grid)):
-        for space in range(0, len(grid[0])):
-            if space == "0":
+    for row in range(len(grid)):
+        for column in range(len(grid[0])):
+            if grid[row][column] != counter:
                 continue
-            elif space != counter:
-                continue
-            else:
-                key1 = space - row
-                top_left_to_bottom_right[key1] += 1
-                
-                key2 = space + row
-                bottom_left_to_top_right[key2] +=1
 
-                if key1 in top_left_to_bottom_right == 4:
-                    return True
-                elif key2 in bottom_left_to_top_right == 4:
-                    return True
-                else:
-                    return False
+            key1 = column - row
+            if key1 not in top_left_to_bottom_right:
+                top_left_to_bottom_right[key1] = 0
+            top_left_to_bottom_right[key1] += 1
+            
+            if top_left_to_bottom_right[key1] >= 4:
+                return True
+
+            key2 = column + row
+            if key2 not in bottom_left_to_top_right:
+                bottom_left_to_top_right[key2] = 0
+            bottom_left_to_top_right[key2] += 1
+            
+            if bottom_left_to_top_right[key2] >= 4:
+                return True
+
+    return False
+
 
 def check_wins(grid, player, turns, board):
     won = check_diagonal(grid, player) or check_vertical(grid) or check_horizontal(grid)
@@ -109,13 +110,10 @@ def main():
             except ValueError:
                 print("Column should be a valid number between 0 and 6.")
         
-        for row in board:
+        lowest_point = len(board) - 1
+        for row in reversed(board):
             if row[c_choice] != "0":
-                lowest_point = board.index(row)
-                lowest_point-=1
-                break       
-            else:
-                lowest_point = len(board)-1
+                lowest_point = board.index(row) -1
 
         board = update_grid(board, c_choice, lowest_point, player)
         won = check_wins(board, player, turns, board)
@@ -123,7 +121,7 @@ def main():
         if won == True:
             winner = player
 
-        os.system("cls")
+        os.system('cls' if os.name == 'nt' else 'clear')
         if player == 1:
             player = 2
         else:
