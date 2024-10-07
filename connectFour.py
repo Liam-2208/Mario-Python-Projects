@@ -122,11 +122,13 @@ def main():
 
         lowest_point = len(board) - 1
         for row in reversed(range(ROWS)):
-            if row[column_choice] != "0":
-                lowest_point = row
+            if board[row][column_choice] != "0":
+                lowest_point = int(row) - 1
 
         if lowest_point == -1:
             print(f"Column {column_choice} is full. Please choose another.")
+            time.sleep(1)
+            clear_console()
         else:
             board = update_grid(board, column_choice, lowest_point, player)
 
