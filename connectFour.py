@@ -134,7 +134,7 @@ def main():
 
         if won == True:
             winner = player
-        elif won == type(str):
+        elif type(won) == str:
             print(won)
             break
 
