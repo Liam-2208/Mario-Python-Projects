@@ -1,15 +1,5 @@
 import random
 
-def guessingGame():
-    num = random.randint(1,100)
-    guess = int(input('Enter a guess, 1-100: '))
-    while(guess!=num):
-        if guess>num:
-            guess = int(input('Too high! Try again: '))
-        else:
-            guess = int(input('Too low! Try again: '))
-    print('Correct!')
-
 def perfectSquare():
     num = int(input('Enter a number: '))
     new_num = num/2
@@ -50,14 +40,12 @@ def evenFibbonacci():
 def main():
     choice = int(input())
     if choice == 1:
-        guessingGame()
-    elif choice == 2:
         perfectSquare()
-    elif choice == 3:
+    elif choice == 2:
         findSquareRoot()
-    elif choice == 4:
+    elif choice == 3:
         multiples()
-    elif choice == 5:
+    elif choice == 4s:
         evenFibbonacci()
 
 main()
