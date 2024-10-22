@@ -17,7 +17,8 @@ def payment(items, selected_item):
         try:
             print(f"\nItem selected: {item}")
             amount_due = items[selected_item][1] - credit
-            coin = float(input(f"Amount due: {round(amount_due, 2)}\nCoins Accepted: {valid_coins}\nInsert Coins: "))
+            coin = float(input(f""""Amount due: {round(amount_due, 2)}\n
+            Coins Accepted: {valid_coins}\nInsert Coins: """))
             if coin not in valid_coins:
                 print("Coin not accepted.")
                 time.sleep(1)
@@ -36,6 +37,7 @@ def select_item(items):
         print(f"{key}: {items[key]}")
     selected_item = input("Please pick an item: ")
     selected_item = selected_item.capitalize()
+    
     while selected_item not in items:
         print("Please choose a valid choice.\n")
         time.sleep(1)
