@@ -35,7 +35,7 @@ def select_item(items):
     print("Items:")
     for key in items:
         print(f"{key}: {items[key]}")
-    selected_item = input("Please pick an item: ")
+    selected_item = input("Please pick an Item ID: ")
     selected_item = selected_item.capitalize()
     
     while selected_item not in items:
@@ -44,13 +44,14 @@ def select_item(items):
         os.system("cls")
         for key in items:
             print(f"{key}: {items[key]}")
-        selected_item = input("\nPlease pick an item: ")
+        selected_item = input("\nPlease pick an Item ID: ")
         selected_item = selected_item.capitalize()
     return selected_item
 
 def main():
     choice = ""
     items = {
+        "ID": ["Name", "Price"]
         "A1": ["Original", 1.55, ],
         "A2": ["Ultra White", 1.45],
         "B1": ["Ultra Rosa", 1.50],
