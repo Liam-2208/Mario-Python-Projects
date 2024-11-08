@@ -23,9 +23,13 @@ def load_data():
                 if key not in coin_data: 
                     coin_data[key] = arr[1:4]
 
+def update_data():
+    
+
 def main() -> None:
-    SPACING = 7
+    SPACING = 7 # Amount of spacing between elements in .txt file
     coin_data: dict[str, list[str, float, bool]] = load_data()
+
 
 
     print(coin_data)    
