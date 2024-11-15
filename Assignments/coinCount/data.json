@@ -1,0 +1,8 @@
+{
+    "2.0": {
+        "name": "eris",
+        "coin": 2.0,
+        "weight": 235,
+        "is_correct": false
+    }
+}
