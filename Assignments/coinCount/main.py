@@ -1,59 +1,37 @@
 import os
 import math
-import json
-import time
+from pymenu import select_menu
+from typing import Union
+from pathlib import Path
 
-def clear_console():
-    time.sleep(1)
-    os.system('cls' if os.name == 'nt' else 'clear') 
+SPACING = 7 # Amount of spacing between elements in .txt file
 
-def load_data(): #Writes contents of txt to JSON
-    with open("coinCount.txt", "r") as data_txt: 
-        with open("data.json", "w") as data_json: 
-            for line in data_txt:
-                data_json.writelines(line)
-    
+def load_data() -> list[dict]:
+    root_dir: Path = Path(os.getcwd())
+    data_file_path: Union[str, Path] = Path(root_dir / "coinCount.txt")
+    if not data_file_path.is_file():
+        with open(data_file_path, "w", encoding="utf-8") as f:
+            f.write(f"Name{' '*SPACING}Bags Checked{' '*SPACING}Correct Bags{' '*SPACING}")
+
+
+def check_bag() -> bool:
+    pass
+
+def view_total() -> None:
+    pass
+
+def list_volunteers() -> None:
+    pass
 
 def main() -> None:
-    load_data()
-    valid_coins = [2.0, 1.0, 0.5, 0.2, 0.1, 0.05, 0.01]
-
-    name: str = input("Enter name: ")
-    try:
-        coin: float = float(input(f"Valid Coins: {valid_coins}\nEnter coin: "))
-        while coin not in valid_coins:
-            print("Coin not valid.")
-            clear_console()
-            coin: float = float(input(f"Valid Coins: {valid_coins}\nEnter coin: "))
-    except (TypeError, ValueError):
-        print("Coin should be of type float, eg: £2 = 2.0")
-        clear_console()
+    options: list[str] = ["Check Bag", "View Total", "List Volunteers"]
+    selected_option: str = select_menu.create_select_menu(options, "Pick an option: ")
     
-    while True:
-        try:
-            weight: int = int(input("Enter weight: "))
-            break
-        except (TypeError, ValueError):
-            print("Value should be of type int.")
-            clear_console()
+    if selected_option == options[0]:
+        check_bag()
+    elif selected_option == options[1]:
+        view_total()
+    elif selected_option == options[2]:
+        list_volunteers()
 
-    
-    coin_data: dict[str, dict[str, float, int, bool]] = {
-        f"{coin}":
-            {
-            "name": name,
-            "coin": coin,
-            "weight": weight,
-            "is_correct": False
-            }
-        }
-    
-    with open("data.json", "w") as data_json:
-        data_json.writelines(json.dumps(coin_data, indent = 4))
-
-
-
-
-    print(coin_data)    
-            
 main()
