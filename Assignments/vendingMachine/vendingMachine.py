@@ -17,12 +17,7 @@ def payment(items, selected_item):
         try:
             print(f"\nItem selected: {item}")
             amount_due = items[selected_item][1] - credit
-<<<<<<< HEAD:misc/vendingMachine.py
-            coin = float(input(f""""Amount due: {round(amount_due, 2)}\n
-            Coins Accepted: {valid_coins}\nInsert Coins: """))
-=======
             coin = float(input(f"Amount due: {round(amount_due, 2)}\nCoins Accepted: {valid_coins}\nInsert Coins: "))
->>>>>>> 2809b81187d8478cb10599ae4c8555f70e8f5e63:Assignments/vendingMachine/vendingMachine.py
             if coin not in valid_coins:
                 print("Coin not accepted.")
                 time.sleep(1)
@@ -39,35 +34,22 @@ def select_item(items):
     print("Items:")
     for key in items:
         print(f"{key}: {items[key]}")
-<<<<<<< HEAD:misc/vendingMachine.py
-    selected_item = input("Please pick an Item ID: ")
+    selected_item = input("Please pick an item ID: ")
     selected_item = selected_item.capitalize()
-    
-=======
-    selected_item = input("Please pick an item: ")
-    selected_item = selected_item.capitalize()
->>>>>>> 2809b81187d8478cb10599ae4c8555f70e8f5e63:Assignments/vendingMachine/vendingMachine.py
     while selected_item not in items:
         print("Please choose a valid choice.\n")
         time.sleep(1)
         os.system("cls")
         for key in items:
             print(f"{key}: {items[key]}")
-<<<<<<< HEAD:misc/vendingMachine.py
         selected_item = input("\nPlease pick an Item ID: ")
-=======
-        selected_item = input("\nPlease pick an item: ")
->>>>>>> 2809b81187d8478cb10599ae4c8555f70e8f5e63:Assignments/vendingMachine/vendingMachine.py
         selected_item = selected_item.capitalize()
     return selected_item
 
 def main():
     choice = ""
     items = {
-<<<<<<< HEAD:misc/vendingMachine.py
-        "ID": ["Name", "Price"]
-=======
->>>>>>> 2809b81187d8478cb10599ae4c8555f70e8f5e63:Assignments/vendingMachine/vendingMachine.py
+        "ID": ["Name", "Price"],
         "A1": ["Original", 1.55, ],
         "A2": ["Ultra White", 1.45],
         "B1": ["Ultra Rosa", 1.50],
@@ -84,8 +66,4 @@ def main():
     dispense(selected_item, credit)
 
 if __name__ == "__main__":
-<<<<<<< HEAD:misc/vendingMachine.py
     main()
-=======
-    main()
->>>>>>> 2809b81187d8478cb10599ae4c8555f70e8f5e63:Assignments/vendingMachine/vendingMachine.py
