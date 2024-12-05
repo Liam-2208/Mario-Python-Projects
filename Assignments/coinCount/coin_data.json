@@ -1,0 +1,58 @@
+{
+    "£2": {
+        "coin_value": 2.0,
+        "bag_value": 20.0,
+        "coin_weight": 12.0,
+        "expected_bag_weight": 120.0,
+        "correct": false
+    },
+    "£1": {
+        "coin_value": 1.0,
+        "bag_value": 20.0,
+        "coin_weight": 8.75,
+        "expected_bag_weight": 175.0,  
+        "correct": false
+    },
+    "50p": {
+        "coin_value": 0.5,
+        "bag_value": 10.0,
+        "coin_weight": 8.0,
+        "expected_bag_weight": 160.0,  
+        "correct": false
+    },
+    "20p": {
+        "coin_value": 0.2,
+        "bag_value": 10.0,
+        "coin_weight": 5.0,
+        "expected_bag_weight": 250.0,  
+        "correct": false
+    },
+    "10p": {
+        "coin_value": 0.1,
+        "bag_value": 5.0,
+        "coin_weight": 6.5,
+        "expected_bag_weight": 325.0,  
+        "correct": false
+    },
+    "5p": {
+        "coin_value": 0.05,
+        "bag_value": 5.0,
+        "coin_weight": 2.35,
+        "expected_bag_weight": 235.0,  
+        "correct": false
+    },
+    "2p": {
+        "coin_value": 0.02,
+        "bag_value": 1.0,
+        "coin_weight": 7.12,
+        "expected_bag_weight": 356.0,  
+        "correct": false
+    },
+    "1p": {
+        "coin_value": 0.01,
+        "bag_value": 1.0,
+        "coin_weight": 3.56,
+        "expected_bag_weight": 356.0,  
+        "correct": false
+    }
+}
