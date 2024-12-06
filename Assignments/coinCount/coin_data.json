@@ -4,7 +4,7 @@
         "bag_value": 20.0,
         "coin_weight": 12.0,
         "expected_bag_weight": 120.0,
-        "correct": true
+        "correct": false
     },
     "£1": {
         "coin_value": 1.0,

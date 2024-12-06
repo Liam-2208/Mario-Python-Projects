@@ -131,7 +131,7 @@ def check_bag(data: dict) -> dict[dict]:
 
     # Check if the coin is already correct
     if coin_data[coin]["correct"]:
-        print(f"{coin} is already correct.")
+        print(f"{coin} has already been weighed and is correct.")
         time.sleep(2)
         main()
 
@@ -146,17 +146,10 @@ def check_bag(data: dict) -> dict[dict]:
             os.system('cls' if os.name == 'nt' else 'clear')
     
     # Check if the bag weight is correct
-    if bag_weight < coin_data[coin]["expected_bag_weight"]:
+    if bag_weight != coin_data[coin]["expected_bag_weight"]:
         weight_difference: float = coin_data[coin]["expected_bag_weight"] - bag_weight
-        coin_difference: float = round(weight_difference / coin_data[coin]["coin_weight"]) 
-        print(f"Bag weight is too low. You are {coin_difference} {'coins' if coin_difference != 1 else 'coin'} short.")
-        update_data(volunteer_name, coin, data, False)
-        time.sleep(2)
-        main()
-    elif bag_weight > coin_data[coin]["expected_bag_weight"]:
-        weight_difference: float = bag_weight - coin_data[coin]["expected_bag_weight"]
-        coin_difference: float = round(weight_difference / coin_data[coin]["coin_weight"]) 
-        print(f"Bag weight is too high. You are {coin_difference} {'coins' if coin_difference != 1 else 'coin'} over.")
+        coin_difference: float = round(weight_difference / coin_data[coin]["coin_weight"], 0) 
+        print(f"Bag weight is too low. You are {abs(coin_difference)} {'coins' if coin_difference != 1 else 'coin'} {'short' if bag_weight < coin_data[coin]['expected_bag_weight'] else 'over'}.")
         update_data(volunteer_name, coin, data, False)
         time.sleep(2)
         main()
