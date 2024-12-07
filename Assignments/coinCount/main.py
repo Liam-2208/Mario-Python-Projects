@@ -25,7 +25,8 @@ def request_coin_data() -> dict:
     except requests.exceptions.RequestException as e:
         print(f"Error fetching coin data: {e}")
         print("Please check your internet connection and try again.")
-        exit(0)
+        time.sleep(1.5)
+        return {}
 
 # Function to get coin data from local file or GitHub
 def get_coin_data() -> dict[dict[float, float, float, float, bool]]:
@@ -45,7 +46,13 @@ def get_coin_data() -> dict[dict[float, float, float, float, bool]]:
     except FileNotFoundError:
         # If the file is not found, fetch from GitHub
         print("Coin data file not found. Requesting data from GitHub...")
-        coin_data = request_coin_data()
+        for i in range(5):
+            coin_data = request_coin_data()
+            if coin_data != {}:
+                break
+        if coin_data == {}:
+            print("Failed to fetch coin data from GitHub. Please try again later.")
+            exit(0)
         save_data(coin_data, json_file_path)
     
     return coin_data  
